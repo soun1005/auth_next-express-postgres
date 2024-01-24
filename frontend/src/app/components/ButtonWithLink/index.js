@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-const Button = ({ text, page }) => {
+const ButtonWithLink = ({ text, page, className }) => {
   const router = useRouter();
 
   const handleOnClick = (route = '/') => {
@@ -10,10 +10,14 @@ const Button = ({ text, page }) => {
   };
 
   return (
-    <button type="button" onClick={() => handleOnClick(page)}>
+    <button
+      className={className}
+      type="button"
+      onClick={() => handleOnClick(page)}
+    >
       <p>{text}</p>
     </button>
   );
 };
 
-export default Button;
+export default ButtonWithLink;

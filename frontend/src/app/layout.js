@@ -2,7 +2,7 @@
 
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Button from './components/Button';
+import ButtonWithLink from './components/ButtonWithLink/index';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <nav>
-          <Button text="🏠" />
+          <ButtonWithLink text="🏠" className="homeBtn" />
         </nav>
         <main>{children}</main>
       </body>
