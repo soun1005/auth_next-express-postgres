@@ -26,11 +26,16 @@ export const useLogin = () => {
       if (response.status === 200) {
         router.push('/articles');
         setIsLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
+        const token = response.data.accessToken;
+        localStorage.setItem('token', token);
+        // console.log(token);
+        return token;
       }
     } catch (error) {
       setIsLoading(false);
-      setError(error.response.data.error);
+      console.log(error);
+      setError(error);
     }
   };
 
