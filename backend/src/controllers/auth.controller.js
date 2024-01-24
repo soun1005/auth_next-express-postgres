@@ -35,12 +35,14 @@ const signInUser = async (req, res) => {
       where: { email },
     });
     if (!user) {
+      console.log('Email not found');
       return res.status(404).json('Email not found');
     }
 
     // Verify password
     const passwordValid = await bcrypt.compare(password, user.password);
     if (!passwordValid) {
+      console.log('invalid pw');
       return res.status(404).json('Incorrect email and password combination');
     }
 
@@ -51,10 +53,11 @@ const signInUser = async (req, res) => {
 
     res.status(200).send({
       id: user.id,
-      name: user.name,
       email: user.email,
       accessToken: token,
     });
+
+    console.log('loggedin');
   } catch (err) {
     console.log(err.message);
     return res.status(500).send('Sign in error');
