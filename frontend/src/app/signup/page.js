@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import { useRouter } from 'next/navigation';
+import useSignup from '../hooks/useSignup';
 
 const nameRules = /^[A-Za-z\s]{1,20}$/;
 // alphabets, max 20, white space allowed
@@ -36,11 +37,11 @@ const page = () => {
 
   const router = useRouter();
 
+  const { signup, error, isLoading } = useSignup();
+
   const onSubmit = async (data) => {
     console.log(data);
-    router.push('/');
-    // redirect('/');
-    // actions after the redirection
+    await signup(data);
   };
 
   return (
@@ -128,7 +129,9 @@ const page = () => {
                 ? `${formState.errors.lastName?.message}`
                 : ''}
             </div>
-            <button className="loginBtn">Submit</button>
+            <button className="loginBtn" disabled={isLoading}>
+              Submit
+            </button>
           </form>
         </div>
       </div>

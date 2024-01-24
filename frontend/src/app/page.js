@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import { useRouter } from 'next/navigation';
+import useLogin from './hooks/useLogin';
 
 const schema = yup
   .object({
@@ -21,11 +22,13 @@ export default function Home() {
     resolver: yupResolver(schema),
   });
 
+  const { login, error, isLoading } = useLogin();
+
   const router = useRouter();
 
   const onSubmit = async (data) => {
     console.log(data);
-    router.push('/articles');
+    await login(data);
   };
 
   return (

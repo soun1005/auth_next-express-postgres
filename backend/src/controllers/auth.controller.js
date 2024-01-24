@@ -23,6 +23,7 @@ const registerUser = async (req, res) => {
     });
     return res.status(200).send('Registration successful');
   } catch (err) {
+    console.log(err.message);
     return res.status(500).send('Error in registering user');
   }
 };
