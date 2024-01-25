@@ -9,6 +9,15 @@
   gap: 2rem;
 }
 
+.titleWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 8rem;
+}
+
 @media (max-width: 900px) {
   .articleWrap {
     display: grid;
