@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
+    "start": "node app",
     "build": "npm i"
   },
   "keywords": [],
