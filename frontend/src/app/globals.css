@@ -40,6 +40,12 @@
   height: 100%;
 }
 
+@media (max-width: 700px) {
+  .formContainer {
+    width: 100%;
+  }
+}
+
 .formContainer h1 {
   text-align: center;
 }
