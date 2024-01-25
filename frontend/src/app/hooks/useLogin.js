@@ -26,16 +26,13 @@ export const useLogin = () => {
       if (response.status === 200) {
         router.push('/articles');
         setIsLoading(false);
-        // console.log(response.data);
         const token = response.data.accessToken;
         localStorage.setItem('token', token);
-        // console.log(token);
         return token;
       }
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
-      setError(error);
+      setError(error.response.data);
     }
   };
 

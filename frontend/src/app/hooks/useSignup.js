@@ -28,11 +28,10 @@ export const useSignup = () => {
       if (response.status === 200) {
         router.push('/');
         setIsLoading(false);
-        console.log(response.data);
       }
     } catch (error) {
       setIsLoading(false);
-      setError(error.response.data.error);
+      setError(error.response.data);
     }
   };
 

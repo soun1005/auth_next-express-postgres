@@ -20,6 +20,7 @@ export const useGetArticle = () => {
 
         if (response.status === 200) {
           setArticles(response.data.results[0].data.articles);
+          setIsLoading(false);
         }
       } catch (error) {
         setIsLoading(false);
