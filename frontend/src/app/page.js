@@ -10,10 +10,11 @@ import { string } from 'yup';
 import { useRouter } from 'next/navigation';
 import useLogin from './hooks/useLogin';
 import { useAuth } from './hooks/useAuth';
+import Loading from './components/Loading';
 
 const schema = yup
   .object({
-    email: string().required('Required').email('Cet email nest pas valide'),
+    email: string().required('Required').email('Email is not valid'),
     password: string().required('Required'),
   })
   .required();
@@ -28,17 +29,16 @@ export default function Home() {
   const { login, error, isLoading } = useLogin();
   const { token, removeToken } = useAuth();
 
-  console.log('login page:', token);
   // if token exist -> user is logged in -> value is true
   const tokenExist = !!token;
 
   const onSubmit = async (data) => {
-    console.log(data);
     await login(data);
   };
 
   return (
     <main className="formMain">
+      {isLoading && <Loading />}
       <div className="formContainer">
         {!tokenExist ? (
           <>
@@ -76,24 +76,36 @@ export default function Home() {
                     ? `${formState.errors.password?.message}`
                     : ''}
                 </div>
-
-                <button className="loginBtn" type="submit" disabled={isLoading}>
-                  Log in
-                </button>
+                <span className="error">{error}</span>
+                <div className={styles.buttonWrap}>
+                  <button
+                    className="loginBtn"
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    Log in
+                  </button>
+                  <ButtonWithLink
+                    text="Sign up"
+                    page="signup"
+                    className="signupBtn"
+                  />
+                </div>
               </form>
-              <div className={styles.buttonWrap}>
-                <ButtonWithLink
-                  text="Sign up"
-                  page="signup"
-                  className="signupBtn"
-                />
-              </div>
             </div>
           </>
         ) : (
           <div>
             <h1>You're logged in</h1>
-            <button onClick={removeToken}>Log out</button>
+            <button className="logoutBtn" onClick={removeToken}>
+              Log out
+            </button>
+            <button
+              className="articleBtn"
+              onClick={() => router.push('/articles')}
+            >
+              Check articles
+            </button>
           </div>
         )}
       </div>

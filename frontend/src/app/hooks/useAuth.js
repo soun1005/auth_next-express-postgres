@@ -11,18 +11,11 @@ export const useAuth = () => {
     }
   }, []);
 
-  //   const saveToken = (newToken) => {
-  //     // Save the token to both state and local storage
-  //     setToken(newToken);
-  //     localStorage.setItem('token', newToken);
-  //   };
-
   const removeToken = () => {
     // Remove the token from both state and localstorage
     localStorage.removeItem('token');
     setToken(null);
   };
 
-  // return { token, saveToken, removeToken };
   return { token, removeToken };
 };

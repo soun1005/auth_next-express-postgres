@@ -1,24 +1,40 @@
 /* layout */
 .homeBtn {
-  border: none;
-  padding: 2rem 3rem;
+  padding: 2rem 2rem;
   transition: 0.4s;
+  background-color: transparent;
+  border-radius: 100%;
+  border: none;
 }
 
 .homeBtn:hover {
   transform: scale(1.1);
+  background-color: pink;
   transition: 0.4s;
+  box-shadow: none;
+}
+
+/* buttons */
+.loginBtn,
+.signupBtn,
+.logoutBtn,
+.articleBtn {
+  width: 100%;
+  background-color: pink;
+  border: none;
+  padding: 10px 0;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 
 /* form */
 .formMain {
-  /* background-color: orchid; */
   width: 100%;
   height: calc(100vh - 15rem);
 }
 
 .formContainer {
-  /* background-color: aquamarine; */
   width: 40%;
   margin: auto;
   height: 100%;
@@ -31,7 +47,6 @@
 .formDiv {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   height: 90%;
 }
 
@@ -41,23 +56,40 @@
   margin-top: 2rem;
 }
 
+.form div {
+  display: flex;
+  flex-direction: column;
+}
+
 .form input {
   display: inline-block;
-  margin: 15px 0;
+  margin: 10px 0 5px 0;
   height: 26px;
   border: 1px pink solid;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 
-.loginBtn,
-.signupBtn {
-  width: 100%;
-  background-color: pink;
-  border: none;
-  padding: 10px 0;
-  margin-bottom: 1rem;
-  border-radius: 5px;
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+  margin-bottom: 1.5rem;
+}
+
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.3s 0.3s ease;
+  opacity: 0;
+}
+
+.example-two:focus::-webkit-input-placeholder {
+  transition: text-indent 0.3s 0.3s ease;
+  text-indent: -100%;
+  opacity: 1;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -71,6 +103,7 @@ body {
   margin: auto;
   max-width: 1600px;
   padding: 0 2rem;
+  position: relative;
 }
 
 /* nav */

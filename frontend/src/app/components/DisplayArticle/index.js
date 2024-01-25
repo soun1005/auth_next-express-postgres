@@ -1,16 +1,16 @@
-import React from 'react';
+import styles from './DisplayArticle.module.css';
 
 const DisplayArticle = ({ data }) => {
   return (
     <>
       {data.map(({ article: { id, description, image, title } }) => {
-        console.log(id, description, image, title);
-
         return (
-          <div key={id}>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <img src={image} alt={title} />
+          <div className={styles.container} key={id}>
+            <div>
+              <h2 className={styles.title}>{title}</h2>
+              <p className={styles.desc}>{description}</p>
+            </div>
+            <img src={image} alt={title} className={styles.img} />
           </div>
         );
       })}

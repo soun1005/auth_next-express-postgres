@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
-import { useRouter } from 'next/navigation';
 import useSignup from '../hooks/useSignup';
+import Loading from '../components/Loading';
 
 const nameRules = /^[A-Za-z\s]{1,20}$/;
 // alphabets, max 20, white space allowed
@@ -14,9 +14,9 @@ const passwordRules = /^(?=.*[A-Za-z]).{4,}$/;
 
 const schema = yup
   .object({
-    email: string().required('Required').email('Cet email nest pas valide'),
+    email: string().required('Required').email('Email is not valid'),
     password: string().required('Required').matches(passwordRules, {
-      message: 'Password should have min 4characters, more than 1 letter',
+      message: 'Minimum 4characters, more than 1 letter',
     }),
     confirmPassword: string()
       .required('Required')
@@ -35,17 +35,15 @@ const page = () => {
     resolver: yupResolver(schema),
   });
 
-  const router = useRouter();
-
   const { signup, error, isLoading } = useSignup();
 
   const onSubmit = async (data) => {
-    console.log(data);
     await signup(data);
   };
 
   return (
     <main className="formMain">
+      {isLoading && <Loading />}
       <div className="formContainer">
         <h1>Sign up</h1>
         <div className="formDiv">
@@ -57,7 +55,6 @@ const page = () => {
                 placeholder="E-mail"
                 required
                 type="text"
-                name="email"
               />
             </div>
             <div className="error">
@@ -129,6 +126,7 @@ const page = () => {
                 ? `${formState.errors.lastName?.message}`
                 : ''}
             </div>
+            <span className="error">{error}</span>
             <button className="loginBtn" disabled={isLoading}>
               Submit
             </button>

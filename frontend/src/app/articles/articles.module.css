@@ -1,0 +1,10 @@
+.container {
+  min-height: 100vh;
+}
+
+.articleWrap {
+  display: grid;
+  grid-auto-columns: 3fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
